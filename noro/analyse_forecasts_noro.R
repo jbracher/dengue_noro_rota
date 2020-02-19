@@ -4,8 +4,8 @@
 setwd("noro")
 
 # load libraries, set colours and get some auxiliary functions:
-source("../basic_settings.R")
 source("../auxiliary_functions.R")
+source("../basic_settings.R")
 
 max_horizon <- 4
 
