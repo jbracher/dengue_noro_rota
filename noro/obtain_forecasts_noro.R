@@ -3,7 +3,7 @@
 
 # scp johannes@130.60.71.234:/home/johannes/Documents/hhh4predict/Theory/Article_Theory/data_analysis_forecasting/noro/obtain_forecasts_noro.R obtain_forecasts_noro.R
 # setwd("/home/johannes/Documents/hhh4predict/Theory/Article_Theory/data_analysis_forecasting/")
-setwd("noro")
+# setwd("noro")
 
 library(surveillance)
 library(hhh4addon)
@@ -50,7 +50,7 @@ templ_results_detailed$lag_structure <- as.character(templ_results_detailed$lag_
 
 for(model_version in c("full", "gravity")){
   print(model_version)
-  for(lag_structure in c("ar1", "geom", "pois", "unres", "end")){
+  for(lag_structure in c("ar1", "geom", "pois", "lin", "unres")){
     print(lag_structure)
 
     # for the "end" model there is no distinction between "full" and "gravity":
