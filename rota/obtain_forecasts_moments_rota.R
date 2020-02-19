@@ -49,13 +49,8 @@ templ_results_moments$lag_structure <- as.character(templ_results_moments$lag_st
 
 for(model_version in c("full", "gravity")){
   print(model_version)
-  for(lag_structure in c("end", "ar1", "geom", "end", "pois", "lin", "unres")){
+  for(lag_structure in c("ar1", "geom", "pois", "lin", "unres")){
     print(lag_structure)
-
-    # for the "end" model there is no distinction between "full" and "gravity":
-    if(lag_structure == "end" & model_version == "gravity"){
-      next()
-    }
 
     # initialize matrices/fata.frames to store results:
     multiv_dss_rota[[model_version]][[lag_structure]] <- templ_multiv_dss
@@ -133,7 +128,6 @@ for(model_version in c("full", "gravity")){
 # summarize in data.frame:
 summary_multiv_dss_rota <- data.frame(horizon = 1:4)
 
-summary_multiv_dss_rota$end <- colMeans(multiv_dss_rota$full$end, na.rm = TRUE)
 for(model_version in c("full", "gravity")){
   for(lag_structure in c("ar1", "geom", "pois", "lin", "unres")){
     summary_multiv_dss_rota[, paste0(model_version, "_", lag_structure)] <-
@@ -142,7 +136,7 @@ for(model_version in c("full", "gravity")){
 }
 
 # add DSS for naive forecasts:
-forecasts_naive_rota <- read.csv("forecasts/forecasts_rota_naive_w7.csv")
+forecasts_naive_rota <- read.csv("forecasts/forecasts_rota_naive_glmnb.csv")
 
 table(forecasts_naive_rota$prediction_time)
 means_dss_naive <- means_dss_geom <- numeric(4)
@@ -159,4 +153,4 @@ summary_multiv_dss_rota <- cbind(summary_multiv_dss_rota,
                                  naive_seasonal = means_dss_naive)
 
 # store:
-# write.csv(summary_multiv_dss_rota, file = "dss/summary_multiv_dss_rota.csv", row.names = FALSE)
+write.csv(summary_multiv_dss_rota, file = "dss/summary_multiv_dss_rota.csv", row.names = FALSE)

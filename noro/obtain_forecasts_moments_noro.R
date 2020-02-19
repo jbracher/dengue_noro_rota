@@ -49,13 +49,8 @@ templ_results_moments$lag_structure <- as.character(templ_results_moments$lag_st
 
 for(model_version in c("full", "gravity")){
   print(model_version)
-  for(lag_structure in c("end", "ar1", "geom", "end", "pois", "lin", "unres")){
+  for(lag_structure in c("ar1", "geom", "pois", "lin", "unres")){
     print(lag_structure)
-
-    # for the "end" model there is no distinction between "full" and "gravity":
-    if(lag_structure == "end" & model_version == "gravity"){
-      next()
-    }
 
     # initialize matrices/fata.frames to store results:
     multiv_dss_noro[[model_version]][[lag_structure]] <- templ_multiv_dss
@@ -132,7 +127,6 @@ for(model_version in c("full", "gravity")){
 # summarize in data.frame:
 summary_multiv_dss_noro <- data.frame(horizon = 1:4)
 
-summary_multiv_dss_noro$end <- colMeans(multiv_dss_noro$full$end, na.rm = TRUE)
 for(model_version in c("full", "gravity")){
   for(lag_structure in c("ar1", "geom", "pois", "lin", "unres")){
     summary_multiv_dss_noro[, paste0(model_version, "_", lag_structure)] <-
@@ -141,7 +135,7 @@ for(model_version in c("full", "gravity")){
 }
 
 # add DSS for naive forecasts:
-forecasts_naive_noro <- read.csv("forecasts/forecasts_noro_naive_w7.csv")
+forecasts_naive_noro <- read.csv("forecasts/forecasts_noro_naive_glmnb.csv")
 
 table(forecasts_naive_noro$prediction_time)
 means_dss_naive <- means_dss_geom <- numeric(4)
@@ -159,4 +153,4 @@ summary_multiv_dss_noro <- cbind(summary_multiv_dss_noro,
 
 
 # store:
-# write.csv(summary_multiv_dss_noro, file = "dss/summary_multiv_dss_noro.csv", row.names = FALSE)
+write.csv(summary_multiv_dss_noro, file = "dss/summary_multiv_dss_noro.csv", row.names = FALSE)
