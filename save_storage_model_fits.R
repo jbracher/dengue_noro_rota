@@ -1,4 +1,5 @@
-# This file serves to remove the sts objects from all noro and rota model fits stored for forecasting purposes.
+# This file serves to remove the maps and other unneeeded elements from the sts objects
+# in all noro and rota model fits.
 # This is to avoid storing too large files in the github repository.
 # Note that these sts objects are not used anywhere anyway as in all obtain_forecast files
 # they are replaced by the respective sts objects from the hhh4addon package (this is done
@@ -7,27 +8,6 @@
 # setwd("/home/johannes/Documents/hhh4predict/Theory/Article_Theory/data_analysis_forecasting/")
 source("auxiliary_functions.R")
 source("basic_settings.R")
-
-tps_dengue <- (19*52 - max_horizon):(23*52 - 1)
-
-# dengue:
-setwd("/home/johannes/Documents/hhh4predict/Theory/Article_Theory/data_analysis_forecasting/dengue/model_fits")
-for(lag_structure in c("ar1", "pois", "lin", "geom", "siraj", "unres")){
-  folder_name_temp <- paste0("dengue_", lag_structure)
-  file_names_temp <- list.files(folder_name_temp)
-  for(f in file_names_temp){
-    load(paste0(folder_name_temp, "/", f))
-    fit_name_temp <- paste0("fit_dengue_", lag_structure, "_temp")
-    fit_temp <- get(paste0(fit_name_temp))
-    fit_temp$stsObj <- NULL
-    assign(fit_name_temp, fit_temp)
-    save(list = fit_name_temp, file = paste0(folder_name_temp, "/", f))
-  }
-}
-
-library(hhh4addon)
-data("noroBE")
-a
 
 prune_stsObj <- function(stsObj){
   stsObj@map <- SpatialPolygons(list())
