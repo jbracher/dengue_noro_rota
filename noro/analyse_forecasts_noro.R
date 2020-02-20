@@ -12,11 +12,15 @@ max_horizon <- 4
 # read in log scores:
 multiv_logS_full_ar1 <- read.csv("logS/multiv_logS_noro_full_ar1.csv")
 multiv_logS_full_geom <- read.csv("logS/multiv_logS_noro_full_geom.csv")
+multiv_logS_full_pois <- read.csv("logS/multiv_logS_noro_full_pois.csv")
+multiv_logS_full_lin <- read.csv("logS/multiv_logS_noro_full_lin.csv")
+multiv_logS_full_unres <- read.csv("logS/multiv_logS_noro_full_unres.csv")
 
 multiv_logS_gravity_ar1 <- read.csv("logS/multiv_logS_noro_gravity_ar1.csv")
 multiv_logS_gravity_geom <- read.csv("logS/multiv_logS_noro_gravity_geom.csv")
-
-# multiv_logS_end <- read.csv("logS/multiv_logS_noro_full_end.csv")
+multiv_logS_gravity_pois <- read.csv("logS/multiv_logS_noro_gravity_pois.csv")
+multiv_logS_gravity_lin <- read.csv("logS/multiv_logS_noro_gravity_lin.csv")
+multiv_logS_gravity_unres <- read.csv("logS/multiv_logS_noro_gravity_unres.csv")
 
 multiv_logS_naive <- read.csv("logS/multiv_logS_noro_naive_glmnb.csv")
 
@@ -24,13 +28,19 @@ multiv_logS_glarma <- read.csv("logS/multiv_logS_noro_glarma.csv")
 
 # put together in data.frame:
 logS_horizons_noro <- data.frame(horizon = 1:4,
-                   ar1 = colMeans(multiv_logS_full_ar1[, -1], na.rm = TRUE),
-                   geom = colMeans(multiv_logS_full_geom[, -1], na.rm = TRUE),
-                   gravity_ar1 = colMeans(multiv_logS_gravity_ar1[, -1], na.rm = TRUE),
-                   gravity_geom = colMeans(multiv_logS_gravity_geom[, -1], na.rm = TRUE),
-                   glarma = colMeans(multiv_logS_glarma[, -1], na.rm = TRUE),
-                   naive = colMeans(multiv_logS_naive[, -1], na.rm = TRUE)
-                   )
+                                 full_ar1 = colMeans(multiv_logS_full_ar1[, -1], na.rm = TRUE),
+                                 full_geom = colMeans(multiv_logS_full_geom[, -1], na.rm = TRUE),
+                                 full_pois = colMeans(multiv_logS_full_pois[, -1], na.rm = TRUE),
+                                 full_lin = colMeans(multiv_logS_full_lin[, -1], na.rm = TRUE),
+                                 full_unres = colMeans(multiv_logS_full_unres[, -1], na.rm = TRUE),
+                                 gravity_ar1 = colMeans(multiv_logS_gravity_ar1[, -1], na.rm = TRUE),
+                                 gravity_geom = colMeans(multiv_logS_gravity_geom[, -1], na.rm = TRUE),
+                                 gravity_pois = colMeans(multiv_logS_gravity_pois[, -1], na.rm = TRUE),
+                                 gravity_lin = colMeans(multiv_logS_gravity_lin[, -1], na.rm = TRUE),
+                                 gravity_unres = colMeans(multiv_logS_gravity_unres[, -1], na.rm = TRUE),
+                                 glarma = colMeans(multiv_logS_glarma[, -1], na.rm = TRUE),
+                                 naive = colMeans(multiv_logS_naive[, -1], na.rm = TRUE)
+)
 
 # store:
 # write.csv(logS_horizons_noro, file = "logS/summary_multiv_logS_noro.csv", row.names = FALSE)
@@ -57,7 +67,7 @@ for(h in 1:4){
 }
 
 write.csv(pvals_ar1_vs_geom,
-         file = "logS/pvals_logS_ar1_vs_geom_noro_horizons.csv", row.names = TRUE)
+          file = "logS/pvals_logS_ar1_vs_geom_noro_horizons.csv", row.names = TRUE)
 
 
 
@@ -65,8 +75,8 @@ write.csv(pvals_ar1_vs_geom,
 library(surveillance)
 
 pvals_gravity_vs_full <- matrix(ncol = 2, nrow = 4,
-                            dimnames = list(c("h1", "h2", "h3", "h4"),
-                                            c("ar1", "geom")))
+                                dimnames = list(c("h1", "h2", "h3", "h4"),
+                                                c("ar1", "geom")))
 
 set.seed(123)
 
@@ -90,8 +100,8 @@ write.csv(pvals_gravity_vs_full,
 
 # Plot as in manuscript:
 plot(1:4, logS_horizons_noro$ar1, type = "b", col = cols_models_nr["ar1"], pch = 16, cex = 0.9, lwd=1.5,
-     ylim = c(2.33, 2.5), xlab = "forecast horizon", ylab = "mean multivariate logS", axes = FALSE,
-     main = "(a) Norovirus")
+     ylim = c(1.76, 1.88), xlab = "forecast horizon", ylab = "mean multivariate logS", axes = FALSE,
+     main = "(a) norovirus")
 axis(1, at = 1:4); axis(2); box()
 lines(1:4, logS_horizons_noro$geom, type = "b", col = cols_models_nr["geom"], pch = 16, cex = 0.9, lwd=1.5)
 

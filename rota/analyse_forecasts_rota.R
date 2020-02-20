@@ -12,11 +12,15 @@ max_horizon <- 4
 # read in log scores:
 multiv_logS_full_ar1 <- read.csv("logS/multiv_logS_rota_full_ar1.csv")
 multiv_logS_full_geom <- read.csv("logS/multiv_logS_rota_full_geom.csv")
+multiv_logS_full_pois <- read.csv("logS/multiv_logS_rota_full_pois.csv")
+multiv_logS_full_lin <- read.csv("logS/multiv_logS_rota_full_lin.csv")
+multiv_logS_full_unres <- read.csv("logS/multiv_logS_rota_full_unres.csv")
 
 multiv_logS_gravity_ar1 <- read.csv("logS/multiv_logS_rota_gravity_ar1.csv")
 multiv_logS_gravity_geom <- read.csv("logS/multiv_logS_rota_gravity_geom.csv")
-
-# multiv_logS_end <- read.csv("logS/multiv_logS_rota_full_end.csv")
+multiv_logS_gravity_pois <- read.csv("logS/multiv_logS_rota_gravity_pois.csv")
+multiv_logS_gravity_lin <- read.csv("logS/multiv_logS_rota_gravity_lin.csv")
+multiv_logS_gravity_unres <- read.csv("logS/multiv_logS_rota_gravity_unres.csv")
 
 multiv_logS_naive <- read.csv("logS/multiv_logS_rota_naive_glmnb.csv")
 
@@ -24,10 +28,16 @@ multiv_logS_glarma <- read.csv("logS/multiv_logS_rota_glarma.csv")
 
 # put together in data.frame:
 logS_horizons_rota <- data.frame(horizon = 1:4,
-                                 ar1 = colMeans(multiv_logS_full_ar1[, -1], na.rm = TRUE),
-                                 geom = colMeans(multiv_logS_full_geom[, -1], na.rm = TRUE),
+                                 full_ar1 = colMeans(multiv_logS_full_ar1[, -1], na.rm = TRUE),
+                                 full_geom = colMeans(multiv_logS_full_geom[, -1], na.rm = TRUE),
+                                 full_pois = colMeans(multiv_logS_full_pois[, -1], na.rm = TRUE),
+                                 full_lin = colMeans(multiv_logS_full_lin[, -1], na.rm = TRUE),
+                                 full_unres = colMeans(multiv_logS_full_unres[, -1], na.rm = TRUE),
                                  gravity_ar1 = colMeans(multiv_logS_gravity_ar1[, -1], na.rm = TRUE),
                                  gravity_geom = colMeans(multiv_logS_gravity_geom[, -1], na.rm = TRUE),
+                                 gravity_pois = colMeans(multiv_logS_gravity_pois[, -1], na.rm = TRUE),
+                                 gravity_lin = colMeans(multiv_logS_gravity_lin[, -1], na.rm = TRUE),
+                                 gravity_unres = colMeans(multiv_logS_gravity_unres[, -1], na.rm = TRUE),
                                  glarma = colMeans(multiv_logS_glarma[, -1], na.rm = TRUE),
                                  naive = colMeans(multiv_logS_naive[, -1], na.rm = TRUE)
 )
