@@ -18,8 +18,9 @@ plot(dengueSJ)
 
 # bring into glarma format:
 y <- as.vector(dengueSJ@observed)
+# provide two sine/cosine waves:
 X <- t(sapply(2*pi*seq_along(y)/52,
-              function (x) c(sin = sin(x), cos = cos(x))))
+              function (x) c(sin = sin(x), cos = cos(x), sin(2*x), cos(2*x))))
 X <- cbind(intercept = 1, X)
 
 # select orders:
@@ -106,7 +107,7 @@ for(ind in tps){
 }
 
 
-colMeans(log_scores_n_step_ahead, na.rm = TRUE)
+colMeans(log_scores_n_step_ahead[-(1:8), ], na.rm = TRUE)
 
 # write out:
 write.csv(log_scores_n_step_ahead, file = "logS/logS_dengue_glarma.csv")

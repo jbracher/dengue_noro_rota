@@ -6,6 +6,7 @@ setwd("dengue")
 library(surveillance)
 names_lag_structures <- c("ar1", "pois", "lin", "geom", "unres", "siraj")
 
+source("../auxiliary_functions.R")
 source("../basic_settings.R")
 
 
