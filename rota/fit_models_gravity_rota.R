@@ -66,25 +66,25 @@ for(ind in tps){
     rotaBE_temp@observed[(ind + 1):nrow(rotaBE_temp), ] <- NA
   }
 
-  # # fit ar1 model:
-  # fit_rota_gravity_ar1_temp <- hhh4(rotaBE_temp, ctrl_gravity)
-  # save(fit_rota_gravity_ar1_temp, file = paste0("model_fits/rota_gravity_ar1",
-  #                                               "/fit_rota_gravity_ar1_", ind, ".rda"))
-  #
-  # # fit model with geometric lags:
-  # start_par_lag <- ifelse(ind == tps[1], 0.5, fit_rota_gravity_geom_temp$par_lag)
-  # fit_rota_gravity_geom_temp <- profile_par_lag(rotaBE_temp, ctrl_gravity,
-  #                                               start_par_lag = start_par_lag)
-  # save(fit_rota_gravity_geom_temp, file = paste0("model_fits/rota_gravity_geom",
-  #                                                "/fit_rota_gravity_geom_", ind, ".rda"))
-  #
-  # # fit model with Poisson lags:
-  # start_par_lag <- ifelse(ind == tps[1], 0.5, fit_rota_gravity_pois_temp$par_lag)
-  # fit_rota_gravity_pois_temp <- profile_par_lag(rotaBE_temp, ctrl_gravity_pois,
-  #                                               start_par_lag = start_par_lag)
-  # save(fit_rota_gravity_pois_temp, file = paste0("model_fits/rota_gravity_pois",
-  #                                                "/fit_rota_gravity_pois_",
-  #                                                ind, ".rda"))
+  # fit ar1 model:
+  fit_rota_gravity_ar1_temp <- hhh4(rotaBE_temp, ctrl_gravity)
+  save(fit_rota_gravity_ar1_temp, file = paste0("model_fits/rota_gravity_ar1",
+                                                "/fit_rota_gravity_ar1_", ind, ".rda"))
+
+  # fit model with geometric lags:
+  start_par_lag <- ifelse(ind == tps[1], 0.5, fit_rota_gravity_geom_temp$par_lag)
+  fit_rota_gravity_geom_temp <- profile_par_lag(rotaBE_temp, ctrl_gravity,
+                                                start_par_lag = start_par_lag)
+  save(fit_rota_gravity_geom_temp, file = paste0("model_fits/rota_gravity_geom",
+                                                 "/fit_rota_gravity_geom_", ind, ".rda"))
+
+  # fit model with Poisson lags:
+  start_par_lag <- ifelse(ind == tps[1], 0.5, fit_rota_gravity_pois_temp$par_lag)
+  fit_rota_gravity_pois_temp <- profile_par_lag(rotaBE_temp, ctrl_gravity_pois,
+                                                start_par_lag = start_par_lag)
+  save(fit_rota_gravity_pois_temp, file = paste0("model_fits/rota_gravity_pois",
+                                                 "/fit_rota_gravity_pois_",
+                                                 ind, ".rda"))
 
   # fit model with linear lags using grid-based optimization:
   # the linear version is fitted with optimization over a grid to avoid getting stuck in local optima:
@@ -97,16 +97,16 @@ for(ind in tps){
                                                 "/fit_rota_gravity_lin_",
                                                 ind, ".rda"))
 
-  # # fit model with unconstrained weights:
-  # start_par_lag <- if(ind == tps[1]){
-  #   rep(0.5, max_lag - 1)
-  # }else{
-  #   fit_rota_gravity_unres_temp$par_lag
-  # }
-  # fit_rota_gravity_unres_temp <- profile_par_lag(rotaBE_temp, ctrl_gravity_unres,
-  #                                                start_par_lag = start_par_lag)
-  # save(fit_rota_gravity_unres_temp, file = paste0("model_fits/rota_gravity_unres",
-  #                                                 "/fit_rota_gravity_unres_", ind, ".rda"))
+  # fit model with unconstrained weights:
+  start_par_lag <- if(ind == tps[1]){
+    rep(0.5, max_lag - 1)
+  }else{
+    fit_rota_gravity_unres_temp$par_lag
+  }
+  fit_rota_gravity_unres_temp <- profile_par_lag(rotaBE_temp, ctrl_gravity_unres,
+                                                 start_par_lag = start_par_lag)
+  save(fit_rota_gravity_unres_temp, file = paste0("model_fits/rota_gravity_unres",
+                                                  "/fit_rota_gravity_unres_", ind, ".rda"))
 
   print(ind)
 }
