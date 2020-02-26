@@ -13,3 +13,8 @@ Role of the different files nad order in which they should be run:
 glarma_forecasting_noro: apply GLARMA models to norovirus data and obtain forecasts
 - analyse_forecasts_noro.R: comparison of mean logS obtained with different models
 - plots_forecasts_noro.R: generate some plots visualizing the norovirus forecasts (as in the Supplementary Material)
+
+- AIC/ contains summaries of the AICs obtained by the different models
+- forecasts/ contains summaries of the forecasts from the different models (predictive moments and intervals, PIT values etc)
+- logS/ contains summaries of the obtained logarithmic scores
+- model_fits/ contains all fitted models from which forecasts were obtained (as rda files)

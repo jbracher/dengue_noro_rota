@@ -11,3 +11,7 @@ Role of the different files and order in which they depend on each other:
 - glarma_forecasts_dengue.R: fit GLARMA
 - analyse_logS_dengue.R: comparison of mean logS obtained with different methods
 
+- AIC/ contains summaries of the AICs obtained by the different models
+- forecasts/ contains summaries of the forecasts from the different models (predictive moments and intervals, PIT values etc)
+- logS/ contains summaries of the obtained logarithmic scores
+- model_fits/ contains all fitted models from which forecasts were obtained (as rda files)
