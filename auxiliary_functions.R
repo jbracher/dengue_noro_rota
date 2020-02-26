@@ -860,8 +860,8 @@ eval_coverage <- function(subs){
 
 # two functions for plotting randomized PIT histograms
 plot_pit_hist <- function(pit_l, pit_u, ...){
-  pit_vals <- pit_l + runif(length(pit_l), 0, 1)*(pit_u - pit_l)
-  hist(pit_vals, freq = FALSE,  xlab = "PIT", ...)
+  pit_vals <- pit_l + runif(20*length(pit_l), 0, 1)*(pit_u - pit_l)
+  hist(pit_vals, freq = FALSE,  xlab = "PIT", breaks = 0:10/10, ...)
 }
 
 add_pit_hist <- function(pit_l, pit_u, shift = 0.05, ...){
