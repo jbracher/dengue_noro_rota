@@ -1,7 +1,7 @@
 Norovirus analysis for the Bracher/Held: Endemic-epidemic models with discrete-time serial interval
 distributions for infectious disease prediction
 
-Role of the different files nad order in which they should be run:
+Role of the different files and order in which they should be run:
 
 - choose_order_noro.R: fits models to the whole data set with different values for the order p.
 - analyse_fitted_models_noro.R: compare AICs and create descriptive plots for different model variants.
