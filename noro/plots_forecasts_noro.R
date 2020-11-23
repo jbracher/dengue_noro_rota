@@ -12,8 +12,8 @@ source("../auxiliary_functions.R")
 source("../basic_settings.R")
 
 # get results for geometric lags:
-forecasts_noro_full_geom <- read.csv("/home/johannes/Documents/hhh4predict/Theory/Article_Theory/data_analysis_forecasting/noro/forecasts/forecasts_noro_full_geom.csv")
-forecasts_noro_full_ar1 <- read.csv("/home/johannes/Documents/hhh4predict/Theory/Article_Theory/data_analysis_forecasting/noro/forecasts/forecasts_noro_full_ar1.csv")
+forecasts_noro_full_geom <- read.csv("forecasts/forecasts_noro_full_geom.csv")
+forecasts_noro_full_ar1 <- read.csv("forecasts/forecasts_noro_full_ar1.csv")
 
 # make subsets according to horizons (subs_noro_full_geom) and combination
 # of horizon and unit (subs_noro_full_geom_u)
